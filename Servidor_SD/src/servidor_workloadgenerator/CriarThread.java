@@ -17,55 +17,44 @@ import javax.swing.JLabel;
  * @author Helbert Monteiro
  */
 public class CriarThread {
-    
+
     GeradorGrafico grafico = new GeradorGrafico();
-    
+
     private ServerSocket servidor;
-    private Socket       cliente;
-    
+    private Socket cliente;
+
     ObjectOutputStream saida;
-    Scanner            entrada;
-    
-    private int    tempo, indice;
+    Scanner entrada;
+
+    private int tempo, indice;
     private double media, valor, soma;
-    
-    
-    
-    public void run(String celular, JLabel aparelho, int porta){
+
+    //public void run(String celular, JLabel aparelho, int porta) {
+    public void run(String palavras, int vezes){
         try {
-            servidor = new ServerSocket(porta);
-            System.out.println("Servidor ouvindo a porta " + porta);
+            //servidor = new ServerSocket(porta);
+            //System.out.println("Servidor ouvindo a porta " + porta);
 
-            tempo  = 3;
-            indice = 3;
-            soma   = 0;
+            //cliente = servidor.accept();
+            //System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
+            saida = new ObjectOutputStream(cliente.getOutputStream());
 
-            while(true) {
-                cliente = servidor.accept();
-                System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
-                saida = new ObjectOutputStream(cliente.getOutputStream());
+            saida=  new ObjectOutputStream()
+            
+            
+            entrada = new Scanner(cliente.getInputStream());
+            valor = Double.parseDouble(entrada.nextLine());
+            System.out.println(celular + ": " + valor);
 
-
-                entrada = new Scanner(cliente.getInputStream());
-                valor = Double.parseDouble(entrada.nextLine());
-                System.out.println(celular + ": "+ valor);
-                
-                soma += valor;
-                media = soma / indice;
-                indice ++;
-                
-                grafico.addValor(valor, tempo, celular, media);
-                grafico.exibeGrafico();
-                tempo += 3;
-
-                aparelho.setText("Monitorado: " + cliente.getInetAddress().getHostAddress() + " - Média: " + media);
+            grafico.addValor(valor, tempo, celular, media);
+            grafico.exibeGrafico();
+            
 
                 saida.flush();
                 saida.writeObject(new Date());
                 saida.close();
-                cliente.close();
-            }
-        }catch(Exception a) {
+
+        } catch (Exception a) {
             System.out.println("Erro: " + a.getMessage());
         }
     }

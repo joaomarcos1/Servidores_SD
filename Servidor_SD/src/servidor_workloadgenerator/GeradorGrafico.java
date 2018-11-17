@@ -40,12 +40,12 @@ public class GeradorGrafico {
     Dimension dimension = toolkit.getScreenSize();
     
     public void addValor(double decibeis, int tempo, String linha, double media){
-        dadoBarra.addValue(decibeis, linha, tempo + "s");
+        dadoBarra.addValue(decibeis, linha, tempo+"");
         dadoPizza.setValue(linha, media);
     }
     
     private void criaGrafico(){
-        graficoBarra = ChartFactory.createBarChart("Valor atual", "Tempo", "Decibeis", dadoBarra, PlotOrientation.VERTICAL, true, true, false);
+        graficoBarra = ChartFactory.createBarChart("Valor atual", "Palavra", "Quantidade de Vezes", dadoBarra, PlotOrientation.VERTICAL, true, true, false);
         graficoPizza = ChartFactory.createPieChart("Valor médio", dadoPizza, true, true, false);
         piePlot = (PiePlot) graficoPizza.getPlot();
         piePlot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0} ({2})"));
@@ -70,5 +70,7 @@ public class GeradorGrafico {
         frame2.pack();
         frame2.setVisible(true);
     }
+    
+    
     
 }

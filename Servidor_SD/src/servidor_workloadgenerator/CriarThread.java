@@ -27,7 +27,8 @@ public class CriarThread {
     Scanner entrada;
 
     private int tempo, indice;
-    private double media, valor, soma;
+    private double media, soma;
+    private int valor;
 
     //public void run(String celular, JLabel aparelho, int porta) {
     public void run(String palavras, int vezes){
@@ -37,16 +38,17 @@ public class CriarThread {
 
             //cliente = servidor.accept();
             //System.out.println("Cliente conectado: " + cliente.getInetAddress().getHostAddress());
-            saida = new ObjectOutputStream(cliente.getOutputStream());
+            //saida = new ObjectOutputStream(cliente.getOutputStream());
 
-            saida=  new ObjectOutputStream()
+            //saida = new ObjectOutputStream(vezes);
+       
             
             
-            entrada = new Scanner(cliente.getInputStream());
-            valor = Double.parseDouble(entrada.nextLine());
-            System.out.println(celular + ": " + valor);
+            //entrada = new Scanner(cliente.getInputStream());
+            valor = vezes;
+            //System.out.println(celular + ": " + valor);
 
-            grafico.addValor(valor, tempo, celular, media);
+            grafico.addValor(valor, tempo, palavras, media);
             grafico.exibeGrafico();
             
 

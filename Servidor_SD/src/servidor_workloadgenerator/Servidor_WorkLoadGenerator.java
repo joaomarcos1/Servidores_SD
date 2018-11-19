@@ -3,7 +3,6 @@ package servidor_workloadgenerator;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -19,24 +18,18 @@ public class Servidor_WorkLoadGenerator extends JFrame{
                    aparelho3 = new JLabel("Aparelho 03");
     private final JButton monitorar = new JButton("Iniciar Monitoramento");
     private Thread thread1, thread2, thread3;
-    ArrayList<String> palavras = new ArrayList<>();
-    int vezes;
-    
-    
     
     public Servidor_WorkLoadGenerator(){
         monitorar.setBounds(30, 30, 300, 40);
         monitorar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
-                for (int i = 0; i < 3; i ++){
-                    thread1 = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            new CriarThread().run(palavras[i], vezes);
-                        }});
-                    thread1.start();
-                }
+                thread1 = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new CriarThread().run("Celular 01", aparelho1, 9002);
+                    }});
+                thread1.start();
                 
                 /*
                 thread2 = new Thread(new Runnable() {
@@ -52,8 +45,7 @@ public class Servidor_WorkLoadGenerator extends JFrame{
                         new CriarThread().run("Celular 03", aparelho3, 9004);
                 }});
                 thread3.start();
-                */
-                
+*/
             }
         });
         

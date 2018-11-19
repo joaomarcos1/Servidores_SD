@@ -44,6 +44,8 @@ public class GeradorGrafico {
         dadoPizza.setValue(linha, media);
     }
     
+    
+  
     private void criaGrafico(){
         graficoBarra = ChartFactory.createBarChart("Valor atual", "Palavra", "Quantidade de Vezes", dadoBarra, PlotOrientation.VERTICAL, true, true, false);
         graficoPizza = ChartFactory.createPieChart("Valor médio", dadoPizza, true, true, false);

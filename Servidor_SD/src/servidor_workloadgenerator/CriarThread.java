@@ -48,7 +48,8 @@ public class CriarThread {
             valor = vezes;
             //System.out.println(celular + ": " + valor);
 
-            grafico.addValor(valor, tempo, palavras, media);
+            //grafico.addValor(valor, tempo, palavras, media);
+            grafico.addValor(media, tempo, palavras, media);
             grafico.exibeGrafico();
             
 
@@ -59,5 +60,9 @@ public class CriarThread {
         } catch (Exception a) {
             System.out.println("Erro: " + a.getMessage());
         }
+    }
+
+    void run(String celular_01, JLabel aparelho1, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
